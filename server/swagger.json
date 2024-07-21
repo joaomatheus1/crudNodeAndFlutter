@@ -14,6 +14,26 @@
           "200": {
             "description": "Workshop inserido com sucesso"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "dataAtual": {
+                    "type": "string"
+                  },
+                  "descricao": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -36,6 +56,20 @@
             "200": {
               "description": "Colaborador inserido com sucesso"
             }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "get": {
@@ -56,6 +90,23 @@
             "200": {
               "description": "Ata criada com sucesso"
             }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "workshopId": {
+                      "type": "integer"
+                    },
+                    "dataAtual": {
+                      "type":"string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
     },
@@ -67,7 +118,28 @@
             "200": {
               "description": "Colaborador adicionado com sucesso"
             }
-          }
+          },
+          "parameters":[
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  ":ataId": {
+                    "type":"integer",
+                    "example": 1
+                  },
+                  ":colaboradorId": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                },
+                "required": [":ataId", ":colaboradorId"]
+              }
+            }
+          ]
         },
         "delete": {
             "tags": ["Atas"],
@@ -76,88 +148,29 @@
               "200": {
                 "description": "Colaborador removido com sucesso"
               }
-            }
-        }
-    }
-  },
-  "get": {
-    "tags": ["Products"],
-    "summary": "Endpoint for obtaining a product data by id.",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Id of the product to retrieve.",
-        "schema": {
-          "type": "number"
-        }
-      }
-    ],
-    "responses": {
-      "200": {
-        "description": "Product successfully returned."
-      }
-    }
-  },
-  "put": {
-    "tags": ["Products"],
-    "summary": "Endpoint for updating a product data by id.",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Id of the product to update.",
-        "schema": {
-          "type": "number"
-        }
-      }
-    ],
-    "requestBody": {
-      "content": {
-        "application/json": {
-          "schema": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "price": {
-                "type": "number"
+            },
+            "parameters":[
+              {
+                "name": "body",
+                "in": "body",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    ":ataId": {
+                      "type":"integer",
+                      "example": 1
+                    },
+                    ":colaboradorId": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  },
+                  "required": [":ataId", ":colaboradorId"]
+                }
               }
-            }
-          }
+            ]
         }
-      }
-    },
-    "responses": {
-      "200": {
-        "description": "Product updated successfully."
-      }
-    }
-  },
-  "delete": {
-    "tags": ["Products"],
-    "summary": "Endpoint for delete a product data by id.",
-    "parameters": [
-      {
-        "name": "id",
-        "in": "path",
-        "required": true,
-        "description": "Id of the product to delete.",
-        "schema": {
-          "type": "number"
-        }
-      }
-    ],
-    "responses": {
-      "204": {
-        "description": "Product removed successfully."
-      }
     }
   }
 }
