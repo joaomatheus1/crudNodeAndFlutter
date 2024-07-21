@@ -1,0 +1,163 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Fast Teste",
+    "version": "1.0.0",
+    "description": "Aplicação de teste da Fast, feito em Node.JS, Typescript, Express"
+  },
+  "paths": {
+    "/api/workshops": {
+      "post": {
+        "tags": ["Workshops"],
+        "summary": "Endpoint para cadastrar workshops",
+        "responses": {
+          "200": {
+            "description": "Workshop inserido com sucesso"
+          }
+        }
+      }
+    },
+    "/api/workshops?nome&data": {
+      "get": {
+        "tags": ["Workshops"],
+        "summary": "Endpoint para filtrar a lista de workshops pela data ou nome e retorne as informações dos colaboradores que participaram",
+        "responses": {
+          "200": {
+            "description": "Workshops listado com sucesso"
+          }
+        }
+      }
+    },
+    "/api/colaboradores": {
+        "post": {
+          "tags": ["Colaboradores"],
+          "summary": "Endpoint para cadastrar colaboradores",
+          "responses": {
+            "200": {
+              "description": "Colaborador inserido com sucesso"
+            }
+          }
+        },
+        "get": {
+          "tags": ["Colaboradores"],
+          "summary": "Endpoint que retorna uma lista de colaboradores em ordem alfabética e informações sobre os workshops que eles participaram.",
+          "responses": {
+            "200": {
+              "description": "Workshops listado com sucesso"
+            }
+          }
+        }
+    },
+    "/api/atas": {
+        "post": {
+          "tags": ["Atas"],
+          "summary": "Endpoint para criar uma ata de presença de um Workshop.",
+          "responses": {
+            "200": {
+              "description": "Ata criada com sucesso"
+            }
+          }
+        }
+    },
+    "/api/atas/:ataId/colaboradores/:colaboradorId": {
+        "put": {
+          "tags": ["Atas"],
+          "summary": "Endpoint para adicionar um colaborador em uma ata",
+          "responses": {
+            "200": {
+              "description": "Colaborador adicionado com sucesso"
+            }
+          }
+        },
+        "delete": {
+            "tags": ["Atas"],
+            "summary": "Endpoint para remover um colaborador em uma ata",
+            "responses": {
+              "200": {
+                "description": "Colaborador removido com sucesso"
+              }
+            }
+        }
+    }
+  },
+  "get": {
+    "tags": ["Products"],
+    "summary": "Endpoint for obtaining a product data by id.",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Id of the product to retrieve.",
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Product successfully returned."
+      }
+    }
+  },
+  "put": {
+    "tags": ["Products"],
+    "summary": "Endpoint for updating a product data by id.",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Id of the product to update.",
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Product updated successfully."
+      }
+    }
+  },
+  "delete": {
+    "tags": ["Products"],
+    "summary": "Endpoint for delete a product data by id.",
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Id of the product to delete.",
+        "schema": {
+          "type": "number"
+        }
+      }
+    ],
+    "responses": {
+      "204": {
+        "description": "Product removed successfully."
+      }
+    }
+  }
+}
