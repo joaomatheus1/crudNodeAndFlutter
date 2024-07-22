@@ -6,7 +6,7 @@ class ColaboradorController {
   inserirColaborador(req: Request, res: Response) {
     const { nome } = req.body;
     connection.query(
-      INSERIR_COLABORADOR,[nome],
+      INSERIR_COLABORADOR, [nome],
       (error) => {
         if (error) {
           res.status(400).json({ error: "Bad request" });

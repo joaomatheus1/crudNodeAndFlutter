@@ -35,9 +35,7 @@
             }
           }
         }
-      }
-    },
-    "/api/workshops?nome&data": {
+      },
       "get": {
         "tags": ["Workshops"],
         "summary": "Endpoint para filtrar a lista de workshops pela data ou nome e retorne as informações dos colaboradores que participaram",
@@ -45,7 +43,28 @@
           "200": {
             "description": "Workshops listado com sucesso"
           }
-        }
+        },
+        "parameters":[
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type":"string",
+                  "example": "Criptografia em flutter"
+                },
+                "data": {
+                  "type": "string",
+                  "example": "28/07/2024"
+                }
+              },
+              "required": ["nome", "data"]
+            }
+          }
+        ]
       }
     },
     "/api/colaboradores": {
