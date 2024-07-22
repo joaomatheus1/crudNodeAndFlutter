@@ -18,40 +18,55 @@ class WorkshopDetalhes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(workshop),
+        backgroundColor: Colors.deepPurple,
+        title: Text(workshop, 
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white
+            ),
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Data: $data',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              'Descrição: $desc',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'Colaboradores:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8.0),
+            titles('Data de criação:', data, 18, Colors.black),
+            const SizedBox(height: 12.0),
+            titles('Descrição:', desc, 16, Colors.black54),
+            const SizedBox(height: 24.0),
+            titles('Colaboradores:', '', 18, Colors.black),
+            const SizedBox(height: 12.0),
             Expanded(
               child: ListView.builder(
                 itemCount: nomes.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(nomes[index]),
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 4.0),
+                    elevation: 3,
+                    child: ListTile(
+                      leading: Icon(Icons.person, color: Colors.grey[500]),
+                      title: Text(nomes[index]),
+                      contentPadding: const EdgeInsets.all(12.0),
+                    ),
                   );
                 },
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget titles(String title, String? value, double fontSize, Color color) {
+    return Text(
+      value == '' ? title : '$title $value',
+      style: TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.bold,
+        color: color,
       ),
     );
   }
