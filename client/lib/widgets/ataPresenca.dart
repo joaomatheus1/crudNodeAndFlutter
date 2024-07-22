@@ -1,12 +1,14 @@
+import 'package:client/pages/workshop_detalhes.dart';
 import 'package:flutter/material.dart';
 
 class AtaPresenca extends StatelessWidget {
-  final String nome;
+  final List<String> nome;
   final String workshop;
   final String data;
   final String desc;
 
-  AtaPresenca({
+  const AtaPresenca({
+    super.key, 
     required this.nome,
     required this.workshop,
     required this.data,
@@ -23,8 +25,11 @@ class AtaPresenca extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: ListTile(
         contentPadding: EdgeInsets.all(16),
+        onTap: () => {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => WorkshopDetalhes(workshop: workshop, data: data, desc: desc, nomes: nome)))
+        },
         title: Text(
-          nome,
+          workshop,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -33,14 +38,6 @@ class AtaPresenca extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 8),
-            Text(
-              workshop,
-              style: TextStyle(
-                color: Colors.grey[600],
-                fontSize: 16,
-              ),
-            ),
             SizedBox(height: 4),
             Text(
               "Data: $data",

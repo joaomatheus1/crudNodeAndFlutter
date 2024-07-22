@@ -15,23 +15,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final List<Map<String, dynamic>> data = [
     {
-      'nome': "João Matheus",
+      'nome': ["João Matheus", "Fabio", "Tainá"],
       'workshop': "Criptografia",
       'data': "20/07/2023",
       'desc': "Descrição do workshop de Criptografia",
     },
     {
-      'nome': "Maria Silva",
+      'nome': ["João Matheus", "Maria Silva", "Fabio"],
       'workshop': "Machine Learning",
       'data': "25/07/2023",
       'desc': "Descrição do workshop de Machine Learning",
     },
     {
-      'nome': "Tamara",
+      'nome': ["Maria Silva", "Tainá"],
       'workshop': "Machine Learning",
       'data': "24/07/2023",
       'desc': "Descrição do workshop de Machine Learning",
-    },
+    }
   ];
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _workshopController = TextEditingController();
@@ -62,11 +62,13 @@ class _MyAppState extends State<MyApp> {
     String dateText = _dataController.text.toLowerCase();
 
     setState(() {
-      filteredData = data.where((item) =>
-        item['nome'].toLowerCase().contains(searchText) &&
-        item['workshop'].toLowerCase().contains(workshopText) &&
-        item['data'].toLowerCase().contains(dateText)
-      ).toList();
+      filteredData = data.where((item) {
+      List<String> nomes = List<String>.from(item['nome']);
+      bool nameMatches = nomes.map((nome) => nome.toLowerCase()).any((nome) => nome.contains(searchText));
+      return nameMatches &&
+          item['workshop'].toLowerCase().contains(workshopText) &&
+          item['data'].toLowerCase().contains(dateText);
+    }).toList();
     });
   }
 
@@ -122,7 +124,7 @@ class _MyAppState extends State<MyApp> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: AtaPresenca(
-                          nome: item['nome'],
+                          nome: List<String>.from(item['nome']),
                           workshop: item['workshop'],
                           data: item['data'],
                           desc: item['desc'],
