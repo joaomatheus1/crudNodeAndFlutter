@@ -1,15 +1,12 @@
 import express from 'express';
 import { AtasController } from '../controller/atasController';
 import { ColaboradorController } from '../controller/colaboradorController';
-import { redirecionarDoc } from '../controller/swaggerDoc';
 import { WorkshopController } from '../controller/workshopController';
 
 const router = express.Router();
 const workshop = new WorkshopController();
 const colaborador = new ColaboradorController();
 const atas = new AtasController();
-
-router.get('/', redirecionarDoc);
 
 router.post('/api/workshops', (req, res) => {
     workshop.inserirWorkshop(req, res);

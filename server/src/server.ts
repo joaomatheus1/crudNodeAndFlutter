@@ -32,8 +32,8 @@ app.get("/login", (req, res) => {
     }
     res.status(401).end();
 });
-app.use('/',verifyJwt, routes);
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/',verifyJwt, routes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
