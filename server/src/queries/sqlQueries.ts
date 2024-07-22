@@ -20,7 +20,7 @@ ORDER BY
     colaboradores.nome;
 `;
 
-export const INSERIR_WORKSHOP = `INSERT INTO workshops (nome,data , descricao) VALUES (?, ?, ?)`;
+export const INSERIR_WORKSHOP = `INSERT INTO workshops (nome, dataRealizacao, descricao) VALUES (?, ?, ?)`;
 
 export const CRIAR_ATA = `INSERT INTO atas (workshop_id, data) VALUES (?, ?)`;
 
